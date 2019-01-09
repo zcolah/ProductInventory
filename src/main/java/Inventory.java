@@ -30,6 +30,19 @@ public class Inventory {
         }
     }
 
+    public void removeProduct(Product product) throws InsufficientInventory {
+        // you write this class
+    }
+
+    public Product getProduct(String productId) {
+        int index = getProductIndex(productId);
+        if (index >= 0) {
+            return products.get(index);
+        } else {
+            return null;
+        }
+    }
+
     public String getAllProductNames() {
         List<String> productIds = new ArrayList<>();
         for (Product product : products) {
