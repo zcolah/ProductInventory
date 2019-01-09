@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+class InsufficientInventory extends Exception {
+    public InsufficientInventory(int currentInventory, int requestedInventory) {
+        super("There is not enough inventory for this product. " +
+                "Current Inventory: " + currentInventory + " Needed: " + requestedInventory);
+    }
+}
+
 public class Inventory {
     private List<Product> products = new ArrayList<>();
 
@@ -16,8 +23,8 @@ public class Inventory {
 
     public void addProduct(Product product) {
         int index = getProductIndex(product.getProductId());
-        if (index > 0) {
-            products.get(index).addStock(product.getQuantityAvailable());
+        if (index >= 0) {
+            products.get(index).addStock(product.getQuantity());
         } else {
             products.add(product);
         }
@@ -34,7 +41,7 @@ public class Inventory {
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
-        inventory.addProduct(new Product("milk", 3.5));
+        inventory.addProduct(new Product("milk", 3.5, 1));
         inventory.addProduct(new Product("banana", .6));
 
         System.out.println(inventory.getAllProductNames());
