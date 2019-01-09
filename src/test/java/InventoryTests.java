@@ -19,6 +19,15 @@ public class InventoryTests {
         Assert.assertEquals(3, inventory.getProduct("apple").getQuantity());
     }
 
+    @Test
+    public void updatePrice() {
+        Inventory inventory = new Inventory();
+        inventory.addProduct("apple", .6, 1);
+        inventory.addProduct("apple", .7, 2);
+
+        Assert.assertEquals(.7, inventory.getProduct("apple").getPrice(), .0001);
+    }
+
     @Test(expected = InsufficientInventory.class)
     public void removeApples() throws InsufficientInventory {
         Inventory inventory = new Inventory();

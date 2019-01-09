@@ -1,11 +1,7 @@
-public class Product {
+class Product {
     private final String productId;
     private double price;
     private int quantity;
-
-    Product(String productId, double price) {
-        this(productId, price, 0);
-    }
 
     Product(String productId, double price, int quantity) {
         this.productId = productId;
@@ -13,15 +9,23 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getProductId() {
+    String getProductId() {
         return productId;
     }
 
-    public int getQuantity() {
+    double getPrice() {
+        return price;
+    }
+
+    void setPrice(double price) {
+        this.price = price;
+    }
+
+    int getQuantity() {
         return quantity;
     }
 
-    public void addStock(int quantity) {
+    void addStock(int quantity) {
         this.quantity += quantity;
     }
 
