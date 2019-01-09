@@ -21,16 +21,16 @@ public class Inventory {
         return -1;
     }
 
-    public void addProduct(Product product) {
-        int index = getProductIndex(product.getProductId());
+    public void addProduct(String productId, double price, int quantity) {
+        int index = getProductIndex(productId);
         if (index >= 0) {
-            products.get(index).addStock(product.getQuantity());
+            products.get(index).addStock(quantity);
         } else {
-            products.add(product);
+            products.add(new Product(productId, price, quantity));
         }
     }
 
-    public void removeProduct(Product product) throws InsufficientInventory {
+    public void removeProduct(String productId, int quantity) throws InsufficientInventory {
         // you write this class
     }
 
@@ -54,8 +54,8 @@ public class Inventory {
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
-        inventory.addProduct(new Product("milk", 3.5, 1));
-        inventory.addProduct(new Product("banana", .6));
+        inventory.addProduct("milk", 3.5, 1);
+        inventory.addProduct("banana", .6, 1);
 
         System.out.println(inventory.getAllProductNames());
     }

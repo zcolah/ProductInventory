@@ -5,7 +5,7 @@ public class InventoryTests {
     @Test
     public void addApples() {
         Inventory inventory = new Inventory();
-        inventory.addProduct(new Product("apple", .6, 2));
+        inventory.addProduct("apple", .6, 2);
 
         Assert.assertEquals(2, inventory.getProduct("apple").getQuantity());
     }
@@ -13,8 +13,8 @@ public class InventoryTests {
     @Test
     public void addMoreApples() {
         Inventory inventory = new Inventory();
-        inventory.addProduct(new Product("apple", .6, 1));
-        inventory.addProduct(new Product("apple", .6, 2));
+        inventory.addProduct("apple", .6, 1);
+        inventory.addProduct("apple", .6, 2);
 
         Assert.assertEquals(3, inventory.getProduct("apple").getQuantity());
     }
@@ -22,7 +22,7 @@ public class InventoryTests {
     @Test(expected = InsufficientInventory.class)
     public void removeApples() throws InsufficientInventory {
         Inventory inventory = new Inventory();
-        inventory.addProduct(new Product("apple", .6, 10));
-        inventory.removeProduct(new Product("apple", .6, 12));
+        inventory.addProduct("apple", .6, 10);
+        inventory.removeProduct("apple", 12);
     }
 }
